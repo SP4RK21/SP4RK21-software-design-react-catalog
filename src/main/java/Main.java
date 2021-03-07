@@ -7,10 +7,13 @@ import org.bson.Document;
 
 public class Main {
     public static void main(String[] args) {
+        CatalogController controller = new CatalogController(createMongoDao());
         HttpServer
             .newServer(8080)
+            .start((req, resp) -> resp.writeString(controller.processRequest(req)))
             .awaitShutdown();
     }
+
     public static MongoReactiveDao createMongoDao() {
         MongoClient client = MongoClients.create("mongodb://localhost:27017");
         MongoDatabase database = client.getDatabase("catalog");
