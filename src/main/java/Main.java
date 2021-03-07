@@ -11,4 +11,11 @@ public class Main {
             .newServer(8080)
             .awaitShutdown();
     }
+    public static MongoReactiveDao createMongoDao() {
+        MongoClient client = MongoClients.create("mongodb://localhost:27017");
+        MongoDatabase database = client.getDatabase("catalog");
+        MongoCollection<Document> users = database.getCollection("users");
+        MongoCollection<Document> products = database.getCollection("products");
+        return new MongoReactiveDao(users, products);
+    }
 }
