@@ -11,4 +11,31 @@ public class MongoReactiveDao {
         this.users = users;
         this.products = products;
     }
+
+    public Observable<Boolean> addUser(User user) {
+        return insertToCollectionIfNeeded(users, user.toDocument());
+    }
+
+    public Observable<User> getAllUsers() {
+        return users
+                .find()
+                .toObservable()
+                .map(User::new);
+    }
+
+    public Observable<Boolean> insertToCollectionIfNeeded(MongoCollection<Document> collection, Document document) {
+        return collection.find(Filters.eq("id", document.getInteger("id")))
+                .toObservable()
+                .singleOrDefault(null)
+                .flatMap(foundDoc -> {
+                    if (foundDoc == null) {
+                        return collection
+                                .insertOne(document)
+                                .isEmpty()
+                                .map(f -> !f);
+                    } else {
+                        return Observable.just(false);
+                    }
+                });
+    }
 }
