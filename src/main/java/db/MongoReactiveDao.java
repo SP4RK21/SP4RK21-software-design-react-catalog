@@ -29,17 +29,11 @@ public class MongoReactiveDao {
         return users
                 .find(Filters.eq("id", userId))
                 .toObservable()
-                .map(doc -> {
-                    System.out.println(doc);
-                    return Currency.valueOf(doc.getString("currency"));
-                })
+                .map(doc -> Currency.valueOf(doc.getString("currency")))
                 .flatMap(userCurrency -> products
                         .find()
                         .toObservable()
-                        .map(doc -> {
-                            System.out.println(doc);
-                            return new Product(doc).convertedToCurrency(userCurrency);
-                        }));
+                        .map(doc -> new Product(doc).convertedToCurrency(userCurrency)));
     }
 
     public Observable<User> getAllUsers() {

@@ -29,11 +29,7 @@ public class CatalogController {
                                 Currency.valueOf(queryParameterByName(request, "currency"))
                             )
                         )
-                        .map(Object::toString)
-                        .map(e -> {
-                            System.out.println(e);
-                            return e;
-                        });
+                        .map(Object::toString);
 
             case "add_product":
                 return dao
@@ -45,29 +41,17 @@ public class CatalogController {
                                     Double.parseDouble(queryParameterByName(request, "price"))
                             )
                         )
-                        .map(Object::toString)
-                        .map(e -> {
-                            System.out.println(e);
-                            return e;
-                        });
+                        .map(Object::toString);
 
             case "get_products_for_user":
                 return dao
                         .getProductsForUserId(Integer.parseInt(queryParameterByName(request, "user_id")))
-                        .map(Objects::toString)
-                        .map(e -> {
-                            System.out.println(e);
-                            return e;
-                        });
+                        .map(Objects::toString);
 
             case "get_users":
                 return dao
                         .getAllUsers()
-                        .map(Objects::toString)
-                        .map(e -> {
-                            System.out.println(e);
-                            return e;
-                        });
+                        .map(Objects::toString);
 
             default:
                 return Observable.just("unexpected path: " + path);
