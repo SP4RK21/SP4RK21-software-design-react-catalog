@@ -1,3 +1,5 @@
+package model;
+
 import org.bson.Document;
 
 public class User {
@@ -25,7 +27,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "model.User{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", currency='" + currency.name() + '\'' +

@@ -2,6 +2,8 @@ import com.mongodb.rx.client.MongoClient;
 import com.mongodb.rx.client.MongoClients;
 import com.mongodb.rx.client.MongoCollection;
 import com.mongodb.rx.client.MongoDatabase;
+import controller.CatalogController;
+import db.MongoReactiveDao;
 import io.reactivex.netty.protocol.http.server.HttpServer;
 import org.bson.Document;
 

@@ -1,5 +1,10 @@
+package db;
+
 import com.mongodb.client.model.Filters;
 import com.mongodb.rx.client.MongoCollection;
+import model.Currency;
+import model.Product;
+import model.User;
 import org.bson.Document;
 import rx.Observable;
 

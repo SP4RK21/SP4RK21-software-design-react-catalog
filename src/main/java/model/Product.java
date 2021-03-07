@@ -1,3 +1,5 @@
+package model;
+
 import org.bson.Document;
 
 public class Product {
@@ -35,7 +37,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "model.Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", currency='" + currency.name() + '\'' +
