@@ -16,6 +16,27 @@ public class MongoReactiveDao {
         return insertToCollectionIfNeeded(users, user.toDocument());
     }
 
+    public Observable<Boolean> addProduct(Product product) {
+        return insertToCollectionIfNeeded(products, product.toDocument());
+    }
+
+    public Observable<Product> getProductsForUserId(int userId) {
+        return users
+                .find(Filters.eq("id", userId))
+                .toObservable()
+                .map(doc -> {
+                    System.out.println(doc);
+                    return Currency.valueOf(doc.getString("currency"));
+                })
+                .flatMap(userCurrency -> products
+                        .find()
+                        .toObservable()
+                        .map(doc -> {
+                            System.out.println(doc);
+                            return new Product(doc).convertedToCurrency(userCurrency);
+                        }));
+    }
+
     public Observable<User> getAllUsers() {
         return users
                 .find()
