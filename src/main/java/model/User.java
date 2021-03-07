@@ -3,9 +3,9 @@ package model;
 import org.bson.Document;
 
 public class User {
-    public final int id;
-    public final String login;
-    public final Currency currency;
+    private final int id;
+    private final String login;
+    private final Currency currency;
 
 
     public User(Document doc) {
@@ -16,6 +16,18 @@ public class User {
         this.id = id;
         this.login = login;
         this.currency = currency;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public Currency getCurrency() {
+        return currency;
     }
 
     public Document toDocument() {

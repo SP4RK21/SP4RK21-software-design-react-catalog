@@ -49,7 +49,7 @@ public class MongoReactiveDao {
                 .map(User::new);
     }
 
-    public Observable<Boolean> insertToCollectionIfNeeded(MongoCollection<Document> collection, Document document) {
+    private Observable<Boolean> insertToCollectionIfNeeded(MongoCollection<Document> collection, Document document) {
         return collection.find(Filters.eq("id", document.getInteger("id")))
                 .toObservable()
                 .singleOrDefault(null)

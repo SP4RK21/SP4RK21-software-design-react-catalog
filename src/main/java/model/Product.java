@@ -3,10 +3,10 @@ package model;
 import org.bson.Document;
 
 public class Product {
-    public final int id;
-    public final String name;
-    public final Currency currency;
-    public final double price;
+    private final int id;
+    private final String name;
+    private final Currency currency;
+    private final double price;
 
 
     public Product(Document doc) {
@@ -21,6 +21,22 @@ public class Product {
         this.name = name;
         this.currency = currency;
         this.price = price;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public double getPrice() {
+        return price;
     }
 
     public Document toDocument() {

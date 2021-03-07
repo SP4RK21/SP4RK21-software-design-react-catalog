@@ -16,7 +16,7 @@ public class Main {
             .awaitShutdown();
     }
 
-    public static MongoReactiveDao createMongoDao() {
+    private static MongoReactiveDao createMongoDao() {
         MongoClient client = MongoClients.create("mongodb://localhost:27017");
         MongoDatabase database = client.getDatabase("catalog");
         MongoCollection<Document> users = database.getCollection("users");
