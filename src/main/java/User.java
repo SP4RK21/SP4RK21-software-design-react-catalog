@@ -7,7 +7,7 @@ public class User {
 
 
     public User(Document doc) {
-        this(doc.getDouble("id").intValue(), doc.getString("login"), Currency.valueOf(doc.getString("currency")));
+        this(doc.getInteger("id"), doc.getString("login"), Currency.valueOf(doc.getString("currency")));
     }
 
     public User(int id, String login, Currency currency) {

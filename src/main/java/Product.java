@@ -8,8 +8,8 @@ public class Product {
 
 
     public Product(Document doc) {
-        this(doc.getDouble("id").intValue(),
-                doc.getString("login"),
+        this(doc.getInteger("id"),
+                doc.getString("name"),
                 Currency.valueOf(doc.getString("currency")),
                 doc.getDouble("price"));
     }
@@ -35,7 +35,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", currency='" + currency.name() + '\'' +
